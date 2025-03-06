@@ -1,28 +1,38 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+ <!DOCTYPE html>
+<html lang="ko">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2299">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>좋아하는 곡 정렬기</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        #compare-section { margin: 20px; }
+        .song-btn { font-size: 20px; padding: 10px; margin: 10px; cursor: pointer; }
+        table { width: 50%; margin: 20px auto; border-collapse: collapse; }
+        th, td { border: 1px solid black; padding: 10px; }
+        th { background-color: lightgray; }
+    </style>
 </head>
 <body>
-<p class="p1">.&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="ko"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;좋아하는 곡 정렬&lt;/title&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h1&gt;좋아하는 곡 정렬기&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;button onclick="startSorting()"&gt;시작하기&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="script.js"&gt;&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+    <h1>좋아하는 곡 정렬기</h1>
+    <button onclick="startSorting()">정렬 시작하기</button>
+
+    <div id="compare-section" style="display: none;">
+        <h2>어떤 곡이 더 좋은가요?</h2>
+        <button id="song1" class="song-btn"></button>
+        <button id="song2" class="song-btn"></button>
+    </div>
+
+    <div id="result-section" style="display: none;">
+        <h2>🎵 당신의 좋아하는 곡 순위 🎵</h2>
+        <table>
+            <thead>
+                <tr><th>순위</th><th>곡명</th></tr>
+            </thead>
+            <tbody id="result-table"></tbody>
+        </table>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
