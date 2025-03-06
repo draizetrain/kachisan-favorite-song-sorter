@@ -1,27 +1,78 @@
-async function compareSongs(song1, song2) {
-    return new Promise((resolve) => {
-        const choice = prompt(`어떤 곡이 더 좋은가요?\n1: ${song1}\n2: ${song2}\n(1 또는 2 입력)`);
-        resolve(choice === "1" ? -1 : choice === "2" ? 1 : 0);
+// 미리 정해진 곡 목록
+const songs = [
+   "주제는 사랑", 
+"가위, 바위, 보!", 
+"RESCUE!", 
+"Convenient Love", 
+"거짓말 자판기", 
+"징크스", 
+"뻔한 방법", 
+"절취선", 
+"요괴인간", 
+"안개", 
+"쫄다", 
+"The Mom of Moms", 
+"다이얼", 
+"TEATIME", 
+"죄악극성"
+];
+
+let comparisons = [];
+let i = 0, j = 1;
+
+function shuffleArray(array) {
+    // Fisher-Yates 알고리즘을 사용한 배열 섞기
+    for (let k = array.length - 1; k > 0; k--) {
+        const randomIndex = Math.floor(Math.random() * (k + 1));
+        [array[k], array[randomIndex]] = [array[randomIndex], array[k]];
+    }
+}
+
+function startSorting() {
+    comparisons = songs.slice(); // 원본 배열 복사
+    shuffleArray(comparisons); // 곡 목록을 랜덤하게 섞기
+    i = 0;
+    j = 1;
+
+    document.getElementById("compare-section").style.display = "block";
+    document.getElementById("result-section").style.display = "none";
+    showNextComparison();
+}
+
+function showNextComparison() {
+    if (j >= comparisons.length) {
+        i++;
+        j = i + 1;
+    }
+    if (i >= comparisons.length - 1) {
+        showResults();
+        return;
+    }
+
+    document.getElementById("song1").innerText = comparisons[i];
+    document.getElementById("song2").innerText = comparisons[j];
+
+    document.getElementById("song1").onclick = () => chooseSong(i, j);
+    document.getElementById("song2").onclick = () => chooseSong(j, i);
+}
+
+function chooseSong(winner, loser) {
+    if (winner > loser) {
+        [comparisons[winner], comparisons[loser]] = [comparisons[loser], comparisons[winner]];
+    }
+    j++;
+    showNextComparison();
+}
+
+function showResults() {
+    document.getElementById("compare-section").style.display = "none";
+    document.getElementById("result-section").style.display = "block";
+
+    let tableBody = document.getElementById("result-table");
+    tableBody.innerHTML = "";
+
+    comparisons.forEach((song, index) => {
+        let row = `<tr><td>${index + 1}</td><td>${song}</td></tr>`;
+        tableBody.innerHTML += row;
     });
-}
-
-async function sortSongs(songList) {
-    let swapped;
-    do {
-        swapped = false;
-        for (let i = 0; i < songList.length - 1; i++) {
-            const result = await compareSongs(songList[i], songList[i + 1]);
-            if (result === 1) {
-                [songList[i], songList[i + 1]] = [songList[i + 1], songList[i]];
-                swapped = true;
-            }
-        }
-    } while (swapped);
-    return songList;
-}
-
-async function startSorting() {
-    let songs = prompt("주제는 사랑", "가위, 바위, 보!", "RESCUE!" "Convenient Love", "거짓말 자판기", "징크스", "뻔한 방법", "절취선", "요괴인간", "안개", "쫄다", "The Mom of Moms", "다이얼", "TEATIME", "죄악극성",).split(",").map(s => s.trim()); //곡 쉼표로 구분해서 입력하기
-    const sortedSongs = await sortSongs(songs);
-    alert("🎵 까치산 최애 곡 순위 🎵\n" + sortedSongs.join("\n"));
 }
