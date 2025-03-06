@@ -8,7 +8,7 @@
     <style>
         /* 기본 스타일 설정 */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Helvetica', sans-serif;
             text-align: center;
             margin: 0;
             padding: 0;
@@ -22,6 +22,10 @@
         /* 비교 버튼 스타일 */
         #compare-section {
             margin: 20px;
+        }
+
+        #nickname {
+            font-size: 8px;
         }
 
         .song-btn {
@@ -50,7 +54,7 @@
 
         /* 표 스타일 */
         table {
-            width: 80%;
+            width: 50%;
             margin: 20px auto;
             border-collapse: collapse;
         }
@@ -66,8 +70,9 @@
 
         /* 진행률 표시 스타일 */
         #progress {
-            font-size: 18px;
+            font-size: 8px;
             margin-top: 10px;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -91,6 +96,7 @@
             <tbody id="result-table"></tbody>
         </table>
     </div>
+    <div id="nickname"> @draizetrain </div>
 
     <script src="script.js"></script>
 </body>
