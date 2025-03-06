@@ -21,7 +21,7 @@ async function sortSongs(songList) {
 }
 
 async function startSorting() {
-    let songs = prompt("좋아하는 곡들을 쉼표(,)로 구분하여 입력하세요:").split(",").map(s => s.trim());
+    let songs = prompt("주제는 사랑", "가위, 바위, 보!", "RESCUE!" "Convenient Love", "거짓말 자판기", "징크스", "뻔한 방법", "절취선", "요괴인간", "안개", "쫄다", "The Mom of Moms", "다이얼", "TEATIME", "죄악극성",).split(",").map(s => s.trim()); //곡 쉼표로 구분해서 입력하기
     const sortedSongs = await sortSongs(songs);
-    alert("🎵 당신의 좋아하는 곡 순위 🎵\n" + sortedSongs.join("\n"));
+    alert("🎵 까치산 최애 곡 순위 🎵\n" + sortedSongs.join("\n"));
 }
