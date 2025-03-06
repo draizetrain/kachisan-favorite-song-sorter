@@ -40,7 +40,6 @@ function startSorting() {
 
     document.getElementById("compare-section").style.display = "block";
     document.getElementById("result-section").style.display = "none";
-    document.getElementById("progress").innerText = `진행률: 0%`;
 
     showNextComparison();
 }
@@ -75,7 +74,7 @@ function chooseSong(winner, loser) {
 
 function updateProgress() {
     let percentage = Math.floor((currentComparison / totalComparisons) * 100);
-    document.getElementById("progress").innerText = `진행률: ${percentage}%`;
+    document.getElementById("progress").innerText = `진행률: ${percentage}% (완료: ${currentComparison} / 총 ${totalComparisons})`;
 }
 
 function showResults() {
@@ -88,8 +87,10 @@ function showResults() {
     comparisons.forEach((song, index) => {
         let row = `<tr><td>${index + 1}</td><td>${song}</td></tr>`;
         tableBody.innerHTML += row;
-
     });
 
     document.getElementById("progress").innerText = `정렬 완료!`;
 }
+
+// 페이지 로드 시 자동으로 정렬 시작
+window.onload = startSorting;
