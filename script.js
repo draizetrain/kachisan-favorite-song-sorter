@@ -19,6 +19,8 @@ const songs = [
 
 let comparisons = [];
 let i = 0, j = 1;
+let totalComparisons = 0;
+let currentComparison = 0;
 
 function shuffleArray(array) {
     // Fisher-Yates 알고리즘을 사용한 배열 섞기
@@ -33,9 +35,13 @@ function startSorting() {
     shuffleArray(comparisons); // 곡 목록을 랜덤하게 섞기
     i = 0;
     j = 1;
+    totalComparisons = (comparisons.length * (comparisons.length - 1)) / 2; // 총 비교 횟수 계산
+    currentComparison = 0;
 
     document.getElementById("compare-section").style.display = "block";
     document.getElementById("result-section").style.display = "none";
+    document.getElementById("progress").innerText = `진행률: 0%`;
+
     showNextComparison();
 }
 
@@ -54,6 +60,8 @@ function showNextComparison() {
 
     document.getElementById("song1").onclick = () => chooseSong(i, j);
     document.getElementById("song2").onclick = () => chooseSong(j, i);
+
+    updateProgress();
 }
 
 function chooseSong(winner, loser) {
@@ -61,7 +69,13 @@ function chooseSong(winner, loser) {
         [comparisons[winner], comparisons[loser]] = [comparisons[loser], comparisons[winner]];
     }
     j++;
+    currentComparison++;
     showNextComparison();
+}
+
+function updateProgress() {
+    let percentage = Math.floor((currentComparison / totalComparisons) * 100);
+    document.getElementById("progress").innerText = `진행률: ${percentage}%`;
 }
 
 function showResults() {
@@ -74,5 +88,8 @@ function showResults() {
     comparisons.forEach((song, index) => {
         let row = `<tr><td>${index + 1}</td><td>${song}</td></tr>`;
         tableBody.innerHTML += row;
+
     });
+
+    document.getElementById("progress").innerText = `정렬 완료!`;
 }
