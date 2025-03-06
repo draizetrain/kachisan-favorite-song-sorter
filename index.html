@@ -1,30 +1,89 @@
- <!DOCTYPE html>
+
+<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🐦까치산 최애 곡 소트⛰️</title>
+    <title>좋🐦까치산 최애 곡 소트⛰️</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; }
-        #compare-section { margin: 20px; }
-        .song-btn { font-size: 20px; padding: 10px; margin: 10px; cursor: pointer; }
-        table { width: 50%; margin: 20px auto; border-collapse: collapse; }
-        th, td { border: 1px solid black; padding: 10px; }
-        th { background-color: lightgray; }
+        /* 기본 스타일 설정 */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            margin-top: 20px;
+        }
+
+        /* 비교 버튼 스타일 */
+        #compare-section {
+            margin: 20px;
+        }
+
+        .song-btn {
+            font-size: 18px;
+            padding: 15px;
+            margin: 10px;
+            cursor: pointer;
+            width: 200px; /* 고정된 너비 */
+            height: 50px; /* 고정된 높이 */
+            text-align: center;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        /* 반응형 디자인을 위한 CSS */
+        @media (max-width: 600px) {
+            .song-btn {
+                width: 80%; /* 모바일에서는 버튼 크기를 화면에 맞게 조정 */
+                font-size: 16px;
+                padding: 12px;
+            }
+        }
+
+        /* 표 스타일 */
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+
+        th {
+            background-color: lightgray;
+        }
+
+        /* 진행률 표시 스타일 */
+        #progress {
+            font-size: 18px;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
     <h1>당신의 까치산 최애 곡은?</h1>
-    <button onclick="startSorting()">시작하기</button>
+    <button onclick="startSorting()">정렬 시작하기</button>
 
     <div id="compare-section" style="display: none;">
         <h2>어떤 곡이 더 좋은가요?</h2>
         <button id="song1" class="song-btn"></button>
         <button id="song2" class="song-btn"></button>
+        <p id="progress">진행률: 0%</p> <!-- 진행률 표시 -->
     </div>
 
     <div id="result-section" style="display: none;">
-        <h2>🎵 당신의 좋아하는 곡 순위 🎵</h2>
+        <h2>🎵 당신의 까치산 곡 순위 🎵</h2>
         <table>
             <thead>
                 <tr><th>순위</th><th>곡명</th></tr>
