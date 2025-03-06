@@ -25,7 +25,17 @@
         }
 
         #nickname {
-            font-size: 8px;
+            font-size: 10px;
+        }
+h2 {
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        #buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;  /* 버튼 간격 */
         }
 
         .song-btn {
@@ -33,29 +43,56 @@
             padding: 15px;
             margin: 10px;
             cursor: pointer;
-            width: 200px; /* 고정된 너비 */
-            height: 50px; /* 고정된 높이 */
-            text-align: center;
+            width: 150px;
+            height: 50px;
             background-color: #4CAF50;
             color: white;
             border: none;
             border-radius: 5px;
             box-sizing: border-box;
+            transition: background-color 0.3s ease;
         }
 
-        /* 반응형 디자인을 위한 CSS */
+        .song-btn:hover {
+            background-color: #45a049;
+        }
+
+        /* 모바일 대응 */
         @media (max-width: 600px) {
             .song-btn {
-                width: 80%; /* 모바일에서는 버튼 크기를 화면에 맞게 조정 */
-                font-size: 16px;
-                padding: 12px;
+                width: 40%;  /* 버튼 크기 조정 */
+                font-size: 16px; /* 글자 크기 조정 */
             }
+        }
+
+        /* 사이트 하단 아이디 */
+        #footer {
+            margin-top: 30px;
+            font-size: 9px; /* 아이디 폰트 크기 9px */
+            color: #888;
+        }
+
+        /* 다시하기 버튼 */
+        #reset-button {
+            display: none;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #reset-button:hover {
+            background-color: #d32f2f;
         }
 
         /* 표 스타일 */
         table {
-            width: 50%;
-            margin: 20px auto;
+            width: 70%;
+            margin: 15px auto;
             border-collapse: collapse;
         }
 
@@ -70,7 +107,7 @@
 
         /* 진행률 표시 스타일 */
         #progress {
-            font-size: 8px;
+            font-size: 10px;
             margin-top: 10px;
             margin-bottom: 10px;
         }
@@ -78,11 +115,16 @@
 </head>
 <body>
     <h1>🐦까치산 최애 곡 소트⛰️</h1>
-
-    <div id="compare-section" style="display: none;">
         <div id="progress">
             진행률: 0% (완료: 0 / 총 0)
         </div>
+    <div id="compare-section" style="display: none;">
+          <div id="buttons-container">
+            <button class="song-btn" id="song1">곡 1</button>
+            <button class="song-btn" id="song2">곡 2</button>
+        </div>
+    </div>
+
         <button id="song1" class="song-btn"></button>
         <button id="song2" class="song-btn"></button>
     </div>
@@ -96,7 +138,11 @@
             <tbody id="result-table"></tbody>
         </table>
     </div>
-    <div id="nickname"> @draizetrain </div>
+
+    <button id="reset-button" onclick="resetProgram()">다시하기</button>
+
+    <!-- 하단 아이디 표시 -->
+    <div id="footer">@draizetrain</div>
 
     <script src="script.js"></script>
 </body>
