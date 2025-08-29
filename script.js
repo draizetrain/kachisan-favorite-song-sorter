@@ -14,7 +14,11 @@ const songs = [
 "The Mom of Moms", 
 "다이얼", 
 "TEATIME", 
-"죄악극성"
+"죄악극성",
+   "서문",
+   "표정이나 가면 따위",
+   "소왕야",
+   "영웅에 대한 간단한 이야기"
 ];
 
 let comparisons = [];
